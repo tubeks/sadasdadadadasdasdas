@@ -8,6 +8,10 @@ from typing import Dict, List, Tuple, Optional, Set, Any
 import os
 from collections import defaultdict
 
+# ================== ЗАГРУЗКА ПЕРЕМЕННЫХ ОКРУЖЕНИЯ ==================
+from dotenv import load_dotenv
+load_dotenv()
+
 # ================== AIOGRAM ИМПОРТЫ ==================
 from aiogram import Bot, Dispatcher, F, BaseMiddleware
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
@@ -22,30 +26,48 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ================== КОНФИГУРАЦИЯ ==================
-TOKEN = ""
-STATS_FILE = "chat_stats.json"
-RULES_FILE = "chat_rules.json"
-ACHIEVEMENTS_FILE = "achievements.json"
-BACKUP_DIR = "backups"
-JOIN_EVENTS_FILE = "join_events.json"
+# ================== КОНФИГУРАЦИЯ ИЗ ПЕРЕМЕННЫХ ОКРУЖЕНИЯ ==================
+TOKEN = os.getenv('BOT_TOKEN', '')
+if not TOKEN:
+    raise ValueError("BOT_TOKEN не найден в переменных окружения!")
 
 # ID пользователей, которым разрешено писать от имени бота
-ALLOWED_BOT_SENDERS = [6842501686, 7588258720]
+ALLOWED_BOT_SENDERS = [int(x.strip()) for x in os.getenv('ALLOWED_BOT_SENDERS', '6842501686,7588258720').split(',')]
+
+# Настройки файлов
+STATS_FILE = os.getenv('STATS_FILE', 'data/chat_stats.json')
+RULES_FILE = os.getenv('RULES_FILE', 'data/chat_rules.json')
+ACHIEVEMENTS_FILE = os.getenv('ACHIEVEMENTS_FILE', 'data/achievements.json')
+JOIN_EVENTS_FILE = os.getenv('JOIN_EVENTS_FILE', 'data/join_events.json')
+BACKUP_DIR = os.getenv('BACKUP_DIR', 'data/backups')
+
+# Создаем директории для данных
+os.makedirs(os.path.dirname(STATS_FILE) if os.path.dirname(STATS_FILE) else 'data', exist_ok=True)
+os.makedirs(BACKUP_DIR, exist_ok=True)
 
 # Настройки Cooldown
 COOLDOWNS = {
-    "global": 2, "top": 5, "stats": 8, "rules": 10, "help": 10,
-    "start": 15, "callback": 3, "any_message": 1, "moderation": 3,
-    "games": 5, "future": 10, "profile": 3, "achievements": 3,
-    "duel": 300,
+    "global": int(os.getenv('CD_GLOBAL', '2')),
+    "top": int(os.getenv('CD_TOP', '5')),
+    "stats": int(os.getenv('CD_STATS', '8')),
+    "rules": int(os.getenv('CD_RULES', '10')),
+    "help": int(os.getenv('CD_HELP', '10')),
+    "start": int(os.getenv('CD_START', '15')),
+    "callback": int(os.getenv('CD_CALLBACK', '3')),
+    "any_message": int(os.getenv('CD_ANY_MESSAGE', '1')),
+    "moderation": int(os.getenv('CD_MODERATION', '3')),
+    "games": int(os.getenv('CD_GAMES', '5')),
+    "future": int(os.getenv('CD_FUTURE', '10')),
+    "profile": int(os.getenv('CD_PROFILE', '3')),
+    "achievements": int(os.getenv('CD_ACHIEVEMENTS', '3')),
+    "duel": int(os.getenv('CD_DUEL', '300')),
 }
 
 # Настройки для кика новых участников
 KICK_SETTINGS = {
-    "default_hours": 1,
-    "max_hours": 24,
-    "require_confirmation": True,
+    "default_hours": int(os.getenv('KICK_DEFAULT_HOURS', '1')),
+    "max_hours": int(os.getenv('KICK_MAX_HOURS', '24')),
+    "require_confirmation": os.getenv('KICK_REQUIRE_CONFIRMATION', 'True').lower() == 'true',
 }
 
 # Запрещенные слова
@@ -107,7 +129,6 @@ FUTURE_PREDICTIONS = [
     "💪 Ваша уверенность вдохновит окружающих.",
     "🎁 Судьба преподнесет приятный сюрприз.",
     "🌟 Маленькая победа сегодня - большой успех завтра."
-    
 ]
 
 # Правила чата по умолчанию
@@ -115,7 +136,7 @@ DEFAULT_RULES = """
 📋 <b>Правила чата</b>
 
 1. Запрещен спам.
-2. Запрещены  Любые матерные оскорбления, даже если нет конкретного адресата. Не матерные разрешаются. Оскорбления родителей и родственников запрещены.
+2. Запрещены Любые матерные оскорбления, даже если нет конкретного адресата. Не матерные разрешаются. Оскорбления родителей и родственников запрещены.
 3. Запрещено унижение модов и оригинальной новеллы. Адекватная критика приветствуется.
 4. Запрещены политика, религия, 18+
 5. Запрещена реклама.
@@ -210,6 +231,7 @@ class AchievementSystem:
     
     def save_data(self):
         try:
+            os.makedirs(os.path.dirname(ACHIEVEMENTS_FILE), exist_ok=True)
             data_to_save = {
                 "custom_achievements": self.custom_achievements,
                 "user_achievements": dict(self.user_achievements),
@@ -476,6 +498,7 @@ def load_rules():
 
 def save_rules():
     try:
+        os.makedirs(os.path.dirname(RULES_FILE), exist_ok=True)
         with open(RULES_FILE, 'w', encoding='utf-8') as f:
             json.dump(dict(chat_rules), f, ensure_ascii=False, indent=2)
         logger.info("Правила сохранены в файл")
@@ -502,6 +525,7 @@ def load_data():
 
 def save_data():
     try:
+        os.makedirs(os.path.dirname(STATS_FILE), exist_ok=True)
         data_to_save = {
             "stats": stats,
             "violators": dict(violators),
@@ -3383,9 +3407,11 @@ async def main():
     """Главная функция"""
     load_data()
     
-    if not os.path.exists(BACKUP_DIR):
-        os.makedirs(BACKUP_DIR)
+    # Создаем директории для данных если их нет
+    os.makedirs(BACKUP_DIR, exist_ok=True)
+    os.makedirs(os.path.dirname(STATS_FILE) if os.path.dirname(STATS_FILE) else 'data', exist_ok=True)
     
+    # Запускаем периодические задачи
     asyncio.create_task(periodic_tasks())
     asyncio.create_task(connection_monitor())
     
@@ -3396,6 +3422,8 @@ async def main():
     logger.info("📌 Команда /kicknew - кик новых участников")
     logger.info("=" * 50)
     
+    # Удаляем вебхук и запускаем polling
+    await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
