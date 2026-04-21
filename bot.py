@@ -23,7 +23,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # ================== КОНФИГУРАЦИЯ ==================
-TOKEN = "8724082151:AAGa7ch10KQ-ckKppLO9rgaB4AWY6OJVrmU"
+TOKEN = ""
 STATS_FILE = "chat_stats.json"
 RULES_FILE = "chat_rules.json"
 ACHIEVEMENTS_FILE = "achievements.json"
