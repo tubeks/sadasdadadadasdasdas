@@ -1,0 +1,215 @@
+{
+  "custom_achievements": {
+    "slot_machine1": {
+      "id": "slot_machine1",
+      "name": "🎰Фортуна🎰",
+      "description": "ему действительн покровительствует сама фортуна",
+      "icon": "🎰",
+      "type": "custom"
+    }
+  },
+  "user_achievements": {
+    "-1003194560283": {
+      "1087968824": [
+        {
+          "id": "first_message",
+          "name": "👋 Первый шаг",
+          "description": "Отправил первое сообщение в чат",
+          "icon": "🌱",
+          "type": "auto",
+          "granted_at": "2026-04-20T03:33:13.903581",
+          "granted_by": 0
+        }
+      ],
+      "136817688": [
+        {
+          "id": "first_message",
+          "name": "👋 Первый шаг",
+          "description": "Отправил первое сообщение в чат",
+          "icon": "🌱",
+          "type": "auto",
+          "granted_at": "2026-04-20T03:35:30.660093",
+          "granted_by": 0
+        }
+      ],
+      "7588258720": [
+        {
+          "id": "first_message",
+          "name": "👋 Первый шаг",
+          "description": "Отправил первое сообщение в чат",
+          "icon": "🌱",
+          "type": "auto",
+          "granted_at": "2026-04-20T03:35:59.155909",
+          "granted_by": 0
+        },
+        {
+          "id": "first_week",
+          "name": "📅 Неделя в чате",
+          "description": "Провел в чате 7 дней",
+          "icon": "📆",
+          "type": "auto",
+          "granted_at": "2026-04-21T05:28:58.699964",
+          "granted_by": 0
+        },
+        {
+          "id": "first_month",
+          "name": "📆 Месяц с нами",
+          "description": "Провел в чате 30 дней",
+          "icon": "🎉",
+          "type": "auto",
+          "granted_at": "2026-04-21T05:28:58.700700",
+          "granted_by": 0
+        }
+      ],
+      "1722973900": [
+        {
+          "id": "first_message",
+          "name": "👋 Первый шаг",
+          "description": "Отправил первое сообщение в чат",
+          "icon": "🌱",
+          "type": "auto",
+          "granted_at": "2026-04-21T03:47:17.316588",
+          "granted_by": 0
+        },
+        {
+          "id": "duel_loser",
+          "name": "💀 Жертва",
+          "description": "Проиграл в дуэли",
+          "icon": "😵",
+          "type": "auto",
+          "granted_at": "2026-04-21T05:28:14.608147",
+          "granted_by": 0
+        }
+      ],
+      "1518684785": [
+        {
+          "id": "first_message",
+          "name": "👋 Первый шаг",
+          "description": "Отправил первое сообщение в чат",
+          "icon": "🌱",
+          "type": "auto",
+          "granted_at": "2026-04-21T03:47:17.319260",
+          "granted_by": 0
+        }
+      ],
+      "6773153588": [
+        {
+          "id": "first_message",
+          "name": "👋 Первый шаг",
+          "description": "Отправил первое сообщение в чат",
+          "icon": "🌱",
+          "type": "auto",
+          "granted_at": "2026-04-21T03:47:17.332592",
+          "granted_by": 0
+        }
+      ],
+      "8597388606": [
+        {
+          "id": "first_message",
+          "name": "👋 Первый шаг",
+          "description": "Отправил первое сообщение в чат",
+          "icon": "🌱",
+          "type": "auto",
+          "granted_at": "2026-04-21T03:47:17.340842",
+          "granted_by": 0
+        }
+      ],
+      "5073672390": [
+        {
+          "id": "first_message",
+          "name": "👋 Первый шаг",
+          "description": "Отправил первое сообщение в чат",
+          "icon": "🌱",
+          "type": "auto",
+          "granted_at": "2026-04-21T03:47:17.343772",
+          "granted_by": 0
+        }
+      ],
+      "1020611749": [
+        {
+          "id": "first_message",
+          "name": "👋 Первый шаг",
+          "description": "Отправил первое сообщение в чат",
+          "icon": "🌱",
+          "type": "auto",
+          "granted_at": "2026-04-21T03:47:17.376363",
+          "granted_by": 0
+        }
+      ],
+      "8108334003": [
+        {
+          "id": "first_message",
+          "name": "👋 Первый шаг",
+          "description": "Отправил первое сообщение в чат",
+          "icon": "🌱",
+          "type": "auto",
+          "granted_at": "2026-04-21T03:47:17.379760",
+          "granted_by": 0
+        }
+      ],
+      "7776901568": [
+        {
+          "id": "first_message",
+          "name": "👋 Первый шаг",
+          "description": "Отправил первое сообщение в чат",
+          "icon": "🌱",
+          "type": "auto",
+          "granted_at": "2026-04-21T03:47:17.384579",
+          "granted_by": 0
+        }
+      ],
+      "5276398160": [
+        {
+          "id": "first_message",
+          "name": "👋 Первый шаг",
+          "description": "Отправил первое сообщение в чат",
+          "icon": "🌱",
+          "type": "auto",
+          "granted_at": "2026-04-21T03:47:17.389678",
+          "granted_by": 0
+        }
+      ],
+      "6842501686": [
+        {
+          "id": "first_message",
+          "name": "👋 Первый шаг",
+          "description": "Отправил первое сообщение в чат",
+          "icon": "🌱",
+          "type": "auto",
+          "granted_at": "2026-04-21T05:08:23.302966",
+          "granted_by": 0
+        }
+      ],
+      "1099433534": [
+        {
+          "id": "first_message",
+          "name": "👋 Первый шаг",
+          "description": "Отправил первое сообщение в чат",
+          "icon": "🌱",
+          "type": "auto",
+          "granted_at": "2026-04-21T05:06:48.698868",
+          "granted_by": 0
+        },
+        {
+          "id": "duel_winner",
+          "name": "🔫 Дуэлянт",
+          "description": "Победил в дуэли",
+          "icon": "🏆",
+          "type": "auto",
+          "granted_at": "2026-04-21T05:28:14.607514",
+          "granted_by": 0
+        }
+      ]
+    }
+  },
+  "duel_stats": {
+    "1099433534": {
+      "wins": 1,
+      "losses": 0
+    },
+    "1722973900": {
+      "wins": 0,
+      "losses": 1
+    }
+  }
+}
